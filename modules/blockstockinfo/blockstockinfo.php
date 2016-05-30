@@ -70,7 +70,7 @@ class Blockstockinfo extends Module
     private function alterProductTable($method = 'add')
     {
         $sql = $method == 'add'
-            ? 'ALTER TABLE ' . _DB_PREFIX_ . 'product ADD `stockinfo` VARCHAR (255) NOT NULL DEFAULT "Contactez nous pour connaître la disponibilité de ce produit"'
+            ? 'ALTER TABLE ' . _DB_PREFIX_ . 'product ADD `stockinfo` VARCHAR (255) NOT NULL'
             : 'ALTER TABLE ' . _DB_PREFIX_ . 'product DROP COLUMN `stockinfo`';
 
         if (!Db::getInstance()->execute($sql)) {
