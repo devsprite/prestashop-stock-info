@@ -38,6 +38,7 @@ class Blockstockinfo extends Module
         $this->author = 'Dominique';
         $this->need_instance = 0;
         $this->bootstrap = true;
+        $this->ps_versions_compliancy = array( 'min' => '1.6.1.3', 'max' => '1.6.1.9' );
 
         parent::__construct();
 
@@ -70,7 +71,7 @@ class Blockstockinfo extends Module
     private function alterProductTable($method = 'add')
     {
         $sql = $method == 'add'
-            ? 'ALTER TABLE ' . _DB_PREFIX_ . 'product ADD `stockinfo` VARCHAR (255) NOT NULL'
+            ? 'ALTER TABLE ' . _DB_PREFIX_ . 'product ADD `stockinfo` VARCHAR (255) NOT NULL DEFAULT "Cette pièce dépend d\'un de nos fournisseurs, veuillez prendre contact avec nous pour connaître la disponibilité."'
             : 'ALTER TABLE ' . _DB_PREFIX_ . 'product DROP COLUMN `stockinfo`';
 
         if (!Db::getInstance()->execute($sql)) {
